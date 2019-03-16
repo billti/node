@@ -81,6 +81,7 @@
 #include "src/startup-data-util.h"
 #include "src/string-hasher.h"
 #include "src/tracing/trace-event.h"
+#include "src/tracing/win32-etw.h"
 #include "src/trap-handler/trap-handler.h"
 #include "src/unicode-cache-inl.h"
 #include "src/unicode-inl.h"
@@ -8282,6 +8283,13 @@ void Isolate::Initialize(Isolate* isolate,
     code_event_handler = i::GDBJITInterface::EventHandler;
   }
 #endif  // ENABLE_GDB_JIT_INTERFACE
+#ifdef V8_OS_WIN
+  if (code_event_handler == nullptr) {
+    // TODO: Make dependent on a flag
+    v8::etw::EtwRegister();
+    code_event_handler = v8::etw::EtwEventHandler;
+  }
+#endif // V8_OS_WIN
   if (code_event_handler) {
     i_isolate->InitializeLoggingAndCounters();
     i_isolate->logger()->SetCodeEventHandler(kJitCodeEventDefault,

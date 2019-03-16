@@ -2137,6 +2137,7 @@
                     '../src/base/debug/stack_trace_win.cc',
                     '../src/base/platform/platform-win32.cc',
                     '../src/base/win32-headers.h',
+                    '../src/tracing/win32-etw.h',
                   ],
                 }],
               ],
@@ -2148,6 +2149,7 @@
                 '../src/base/debug/stack_trace_win.cc',
                 '../src/base/platform/platform-win32.cc',
                 '../src/base/win32-headers.h',
+                '../src/tracing/win32-etw.h',
               ],
               'msvs_disabled_warnings': [4351, 4355, 4800],
               'link_settings':  {

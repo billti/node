@@ -61,6 +61,8 @@
 #include <process.h>  // For _beginthreadex().
 #include <stdlib.h>
 
+#include <evntprov.h> // Needed for ETW events
+
 #undef VOID
 #undef DELETE
 #undef IN
